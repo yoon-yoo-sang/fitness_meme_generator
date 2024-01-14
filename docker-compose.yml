@@ -1,0 +1,10 @@
+services:
+  web:
+    build:
+      context: .
+      args:
+        - SECRET_KEY=$SECRET_KEY
+    ports:
+      - '80:8000'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

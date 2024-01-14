@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 MODE = os.getenv('MODE')
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 TWITTER_TOKEN = os.getenv('TWITTER_TOKEN')
 
@@ -29,7 +29,7 @@ AWS_SECRET_KEY = os.getenv('AWS_SECRET_KEY')
 
 DEBUG = True if MODE == 'dev' else False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
