@@ -19,12 +19,17 @@ REDDIT_CLIENT_ID = os.getenv('REDDIT_CLIENT_ID')
 
 REDDIT_CLIENT_SECRET = os.getenv('REDDIT_CLIENT_SECRET')
 
+IMG_FLIP_USERNAME = os.getenv('IMG_FLIP_USERNAME')
+
+IMG_FLIP_PASSWORD = os.getenv('IMG_FLIP_PASSWORD')
+
+AWS_ACCESS_KEY = os.getenv('AWS_ACCESS_KEY')
+
+AWS_SECRET_KEY = os.getenv('AWS_SECRET_KEY')
+
 DEBUG = True if MODE == 'dev' else False
 
 ALLOWED_HOSTS = []
-
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -33,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'memes',
 ]
 
 MIDDLEWARE = [
