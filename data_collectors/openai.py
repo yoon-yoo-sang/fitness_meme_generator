@@ -1,5 +1,6 @@
 import json
 import requests
+from openai import OpenAI
 
 from config.settings import OPENAI_API_KEY
 
@@ -7,23 +8,17 @@ from config.settings import OPENAI_API_KEY
 class OpenAIClient:
     def __init__(self):
         self.api_key = OPENAI_API_KEY
+        self.client = OpenAI(api_key=self.api_key)
         self.url = "https://api.openai.com/v1/chat/completions"
 
     def send(self, instruction):
-        headers = {
-            'Content-Type': 'application/json',
-            "Authorization": f"Bearer {self.api_key}",
-        }
-
-        data = {
-            "model": "gpt-4-1106-preview",
-            "messages": [{"role": "user", "content": instruction}],
-            "response_format": {"type": "json_object"},
-            "temperature": 0.7
-        }
-
-        response = requests.request("POST", self.url, headers=headers, data=json.dumps(data))
-        return json.loads(response.text)['choices'][0]['message']['content']
+        response = self.client.chat.completions.create(
+            model="gpt-4o",
+            messages=[{"role": "user", "content": instruction}],
+            response_format={"type": "json_object"},
+        )
+        res_message_json = response.choices[0].message.content
+        return res_message_json
 
     def search_trends(self, count: int = 3):
         instruction = f"""

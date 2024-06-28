@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from config.settings import AWS_ACCESS_KEY, AWS_SECRET_KEY
 from data_collectors.imgflip import ImgFlipClient
 from data_collectors.openai import OpenAIClient
+from data_collectors.twitter import TwitterClient
 from .models import Meme, MemeTemplate, MemeTextBox
 from .serializers import MemeSerializer
 
@@ -49,6 +50,10 @@ class MemeViewSet(viewsets.ModelViewSet):
             region_name='ap-northeast-2',
         )
         s3_client.upload_fileobj(io.BytesIO(image_file), 'fitness-memes', f"{recent_trend}_{meme_template.name}.jpg")
+
+        twitter_client = TwitterClient()
+
+        twitter_client.post_image(io.BytesIO(image_file))
 
         serializer = MemeSerializer(meme)
 
