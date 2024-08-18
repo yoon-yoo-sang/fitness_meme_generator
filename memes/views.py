@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 from config.settings import AWS_ACCESS_KEY, AWS_SECRET_KEY
 from data_collectors.imgflip import ImgFlipClient
-from data_collectors.openai import OpenAIClient
+from data_collectors.openai_api import OpenAIClient
 from data_collectors.twitter import TwitterClient
 from .models import Meme, MemeTemplate, MemeTextBox
 from .serializers import MemeSerializer
